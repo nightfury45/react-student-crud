@@ -10,6 +10,10 @@ const CircularDependencyPlugin = require('circular-dependency-plugin');
 module.exports = require('./webpack.base.babel')({
   mode: 'development',
 
+  babelQuery: {
+    plugins: [['import', { libraryName: 'antd', style: true }]],
+  },
+
   // Add hot reloading in development
   entry: [
     require.resolve('react-app-polyfill/ie11'),

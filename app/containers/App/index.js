@@ -5,46 +5,93 @@
  * This component is the skeleton around the actual pages, and should only
  * contain code that should be seen on all pages. (e.g. navigation bar)
  */
-
+import '../../../node_modules/antd/dist/antd.css';
 import React from 'react';
-import { Helmet } from 'react-helmet';
-import styled from 'styled-components';
-import { Switch, Route } from 'react-router-dom';
-
-import HomePage from 'containers/HomePage/Loadable';
-import FeaturePage from 'containers/FeaturePage/Loadable';
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
-import Header from 'components/Header';
-import Footer from 'components/Footer';
+// import styled from 'styled-components';
+import { Table, Button, Space } from 'antd';
 
 import GlobalStyle from '../../global-styles';
 
-const AppWrapper = styled.div`
-  max-width: calc(768px + 16px * 2);
-  margin: 0 auto;
-  display: flex;
-  min-height: 100%;
-  padding: 0 16px;
-  flex-direction: column;
-`;
+// const AppWrapper = styled.div`
+//   max-width: calc(768px + 16px * 2);
+//   margin: 0 auto;
+//   display: flex;
+//   min-height: 100%;
+//   padding: 0 16px;
+//   flex-direction: column;
+// `;
 
 export default function App() {
+  const columns = [
+    {
+      key: '1',
+      title: 'No',
+      dataIndex: 'no',
+    },
+    {
+      key: '2',
+      title: 'FirstName',
+      dataIndex: 'firstName',
+    },
+    {
+      key: '3',
+      title: 'LastName',
+      dataIndex: 'lastName',
+    },
+    {
+      key: '4',
+      title: 'Age',
+      dataIndex: 'age',
+    },
+    {
+      key: '5',
+      title: 'Action',
+      render: () => (
+        <Space size="middle">
+          <Button type="primary">Show</Button>
+          <Button>Edit</Button>
+          <Button type="primary" danger>
+            Delete
+          </Button>
+        </Space>
+      ),
+    },
+  ];
+
+  const dataSource = [
+    {
+      no: 1,
+      firstName: 'Huy',
+      lastName: 'Huynh',
+      age: 21,
+    },
+    {
+      no: 1,
+      firstName: 'Huy',
+      lastName: 'Huynh',
+      age: 21,
+    },
+    {
+      no: 1,
+      firstName: 'Huy',
+      lastName: 'Huynh',
+      age: 21,
+    },
+    {
+      no: 1,
+      firstName: 'Huy',
+      lastName: 'Huynh',
+      age: 21,
+    },
+  ];
   return (
-    <AppWrapper>
-      <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
-      >
-        <meta name="description" content="A React.js Boilerplate application" />
-      </Helmet>
-      <Header />
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/features" component={FeaturePage} />
-        <Route path="" component={NotFoundPage} />
-      </Switch>
-      <Footer />
+    <>
+      <div className="App">
+        <div>
+          <Table columns={columns} dataSource={dataSource} />
+        </div>
+      </div>
       <GlobalStyle />
-    </AppWrapper>
+    </>
   );
 }

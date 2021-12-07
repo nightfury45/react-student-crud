@@ -10,6 +10,10 @@ const CompressionPlugin = require('compression-webpack-plugin');
 module.exports = require('./webpack.base.babel')({
   mode: 'production',
 
+  babelQuery: {
+    plugins: [['import', { libraryName: 'antd', style: true }]],
+  },
+
   // In production, we skip all hot-reloading stuff
   entry: [
     require.resolve('react-app-polyfill/ie11'),
